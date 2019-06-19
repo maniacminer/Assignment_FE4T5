@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style type="text/css">
+        /* body {
+            background-size: 100%;
+            opacity: 0.1;
+        } */
+
+        html {
+            background:url(img/background-dark.png ) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;            
+            background-color: black;
+            height: 100%;
+            min-height: 100%;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            /* background-color: black; */
+            height: 100%;
+            width: 100%;
+            display: flex; 
+            padding: 0;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items:center;
+
+        }
+
+        .form {
+            background:url(img/background-blur.png ) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;                 
+            border-radius: 6px;
+            border: 1px solid rgba(95,95,95, .15);
+            /* border-style: solid; */
+            /* border-color: black; */
+            min-width: 320px;
+            min-height: 260px;
+            max-width: 620px;
+            max-height: 420px;
+            width: 70%;
+            /* height: 50%; */
+            box-shadow: 0px 0px 30px 12px rgba(0, 0, 0, 0.20);
+            display: flex;
+            flex-flow: column wrap;
+            /* justify-content: flex-start; */
+            align-items: center;
+            padding: 30px;
+            
+            /* Поддержка blur удалена с IE9, в IE11 нет */
+            /* filter: blur(8px); */
+        }
+
+        .field {
+            /* max-height: 30px; */
+            width: 60%;
+            margin: 7px;
+            height: 42px;
+            border-radius: 24px;
+            border:none;
+            background-color: Transparent;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+            outline: none;
+            text-align: center; 
+            color: white;
+            font-size: 1.20em;
+            /* display: none; */
+
+        }
+
+
+        .field-focus {
+            background-color: white;
+            color: rgb(92, 92, 92);
+
+        }
+
+        .field::placeholder {
+            color:lightgray;
+
+        }
+
+
+        .header {
+            height: 150px;
+            width: 100%;
+        }
+
+        .action {
+            text-transform: uppercase;
+            color: white;
+            font-size: .65em;
+            letter-spacing: 0.11em;
+            opacity: 0.7;
+
+
+        }
+
+        .submit {
+            height: 48px;
+            width: 170px;
+            border:solid;
+            border-radius: 24px;
+            border-width: 2px;
+            color: white;
+            background-color: Transparent;
+            opacity: 0.2;
+            outline: none;
+            /* font-size: 1.10em; */
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.20em;
+            margin: 10px;
+
+        }
+
+        .arrow {
+            /* поправим слегка кривой набросок стрелки от руки по месту */
+            /* TODO: svg ? */
+            top: 2px;
+            position: relative;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="form">
+        <div class="header"> 
+            <img class="arrow" src="img/arrow.png" width="18px" height="10px" alt="" srcset=""><span class="action"> вернуться</span> 
+        </div>
+        <input class="field" placeholder="Номер телефона" type="text">
+        <input class="field field-focus" placeholder="Пароль" type="password">
+        <button class="submit" type="submit">Войти</button>
+    </div>
+</body>
+</html>
