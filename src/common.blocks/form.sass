@@ -1,0 +1,72 @@
+.form
+    display: flex
+    flex-flow: column wrap
+    align-items: center
+    padding: 30px
+
+// button отличается в макете по высоте, на мой взгляд это ошибка
+$form__element_height: 42px
+
+@mixin form_element
+    outline: none
+    color: white
+    background: none
+    text-decoration: none
+    box-shadow: none
+    -webkit-box-shadow: none
+
+@mixin form_block
+    width: 80%
+    margin: 7px
+    height: $form__element_height
+
+.form__field
+    @include form_element
+    @include form_block
+    border:none
+    background-color: Transparent
+    border: 2px solid rgba(255, 255, 255, 0.35)
+    text-align: center
+    font-size: 1.20em
+
+.form__container
+    @include form_element
+    @include form_block
+
+.form__field--round    
+    border-radius: $form__element_height/2
+
+.form__field:focus
+    background-color: white
+    color: rgb(92, 92, 92)
+
+
+.form__button
+    @include form_element
+    height: $form__element_height
+    min-width: 200px;
+    border: solid
+    border-width: 2px
+    background-color: Transparent
+    text-transform: uppercase
+    font-weight: 700
+    letter-spacing: 0.20em
+    cursor: pointer
+
+.form__button--round
+    border-radius: $form__element_height/2
+
+.form__button:disabled
+    opacity: 0.2
+
+.form__header 
+    @include form_element
+    height: 150px
+    width: 100%
+    
+.form__action 
+    @include form_element
+    text-transform: uppercase
+    font-size: .65em
+    letter-spacing: 0.11em
+    opacity: 0.7
