@@ -3,6 +3,9 @@ const  { watch, parallel } = require('gulp');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const sassGlob = require('gulp-sass-glob');
+const cleanCSS = require('gulp-clean-css');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 
 sass.compiler = require('node-sass');
 
@@ -11,6 +14,7 @@ function sassCompile(cb) {
   gulp.src('./src/sass/style.sass')
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
+    // .pipe(cleanCSS({compatibility: 'ie11'}))
     .pipe(gulp.dest('./build/css'));
 
   if (typeof cb === 'function')
@@ -29,6 +33,15 @@ function htmlCompile(cb) {
   }
 }
 
+function jsCompile(cb) {
+  gulp.src('./src/**/*.js')
+    // .pipe(babel({
+    //   presets: ['@babel/env'], modules:"common"
+    // }))
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('./build/js/'))
+  }
+
 function imgCompile(cb) {
   gulp.src('./src/img/*')
     .pipe(gulp.dest('./build/img'));
@@ -41,8 +54,8 @@ function imgCompile(cb) {
 }
 
 
-const staticCompile = parallel(htmlCompile, imgCompile)
-const build = parallel(sassCompile, staticCompile);
+
+const build = parallel(sassCompile, htmlCompile, imgCompile, jsCompile);
 
 
 function serve(done) {
@@ -79,6 +92,12 @@ function serve(done) {
     cb();
   });    
 
+  watch(['./src/**/*.js'], cb => {
+    console.log('rebuilding js...');
+    jsCompile();
+    cb();
+  });      
+
 
   done();
 }
@@ -90,9 +109,3 @@ exports.build = build;
 exports.serve = serve;
 exports.default = serve;
 exports.sass = sassCompile;
-
-
-
- 
- 
- 

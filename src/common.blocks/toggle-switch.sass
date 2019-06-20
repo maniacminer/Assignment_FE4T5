@@ -1,0 +1,43 @@
+.switch-group
+    display: flex
+    align-items: center
+
+.switch-group__checkbox
+    display: none
+
+.switch-group__label
+    margin: 10px 
+    
+.switch-group__toggle-switch
+    border-style: solid
+    border-width: 2px
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    align-items: stretch
+
+.switch-group__toggle-switch--round
+    // проценты - для нормальной отработки изменения размера извне 
+    border-radius: 30%/50%        
+
+.switch-group__toggle-switch::after
+    content: ""
+    margin: 3% 3%
+    width: 55%
+    opacity: 0.5
+    background-color: white
+
+.switch-group__toggle-switch--round::after
+    border-radius: 52%/55%        
+
+.switch-group__checkbox:checked + .switch-group__toggle-switch 
+    // как алтернативу можно использовать transform, тогда будет работать анимация слайда,
+    // но возникнут проблемы с масштабированием
+    // т.к. в идеалогии БЭМ оставлять управление размерами switch-group блоку-родителю элемента, 
+    // то решено использовать flex-direction
+    flex-direction: row-reverse
+
+.switch-group__checkbox:checked + .switch-group__toggle-switch::after
+    opacity: 1
+
+

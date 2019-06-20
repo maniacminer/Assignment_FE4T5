@@ -7,12 +7,27 @@
 .light
     color: white;
 
-.background-dark 
-    @include cool-covered-background(url(/img/background-dark.png))
+// 3 варианта для демонстрации media query
+// для больших девайсов 4k, оригинальный размер
+@media screen and (min-width: 2880px) 
+    .background-dark 
+        @include cool-covered-background(url(/img/background-dark-2880.png))
 
+// средние девайсы используем 1600px по ширине
+@media screen and (max-width: 2879px) 
+    .background-dark 
+        @include cool-covered-background(url(/img/background-dark-1600.png))
+
+// для самых маленьких
+@media screen and (max-width: 1024px) 
+    .background-dark 
+        @include cool-covered-background(url(/img/background-dark-1024.png))
+
+
+// тут всегда используем 640px - уменьшенный размер для экономии трафика, т.к. в блюре не видно
 .background-blur 
-    @include cool-covered-background(url(/img/background-blur.png))
+    @include cool-covered-background(url(/img/background-blur-640.png))
 
 html
     font-family: Arial, Helvetica, sans-serif;
-
+ 
