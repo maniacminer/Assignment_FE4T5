@@ -15,7 +15,7 @@ function sassCompile(cb) {
   gulp.src('./src/sass/style.sass')
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
-    // .pipe(cleanCSS({compatibility: 'ie11'}))
+    .pipe(cleanCSS({compatibility: 'ie11'}))
     .pipe(gulp.dest('./build/css'));
 
   if (typeof cb === 'function')
@@ -46,7 +46,7 @@ function jsCompile(cb) {
     // .pipe(babel({
     //   presets: ['@babel/env']
     // }))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('./build/js/'))
   }
 

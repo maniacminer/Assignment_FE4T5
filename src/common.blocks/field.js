@@ -38,9 +38,10 @@ function Field(domField) {
         }        
 
         // добавляем маску
-        if  (input.hasAttribute('mask')) {
+        // использовал бы кастомный атрибут, но тогда про валидность html можно забыть
+        if  (self.domField.hasAttribute('title')) {
             IMask(input,  {
-                mask: input.getAttribute('mask')
+                mask: self.domField.getAttribute('title')
               })
         }
 
@@ -70,8 +71,12 @@ function Field(domField) {
             }
 
             input.addEventListener('change', validationFunc);
-            // так интереснее
-            // input.addEventListener('keyup', validationFunc);
+            // иначе ie11 не ловит крестик, 
+            // копи-пасты и тд.
+            input.addEventListener('keyup', validationFunc);
+            input.addEventListener('past', validationFunc);
+            input.addEventListener('cut', validationFunc);
+            input.addEventListener('input', validationFunc);
         }  
     }
 

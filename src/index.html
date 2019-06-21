@@ -19,8 +19,9 @@
                 <img class="arrow" src="img/arrow.png" width="18" height="7" alt=""><span class="form__action"> вернуться</span> 
                 <div class="logo_container"><img  src="img/rabbit.png" width="120" height="120" alt=""></div>
             </div>
-            <div class="form__container field">
-                <input class="field__input field__input--round" name="phone" autocomplete="username"  placeholder="Номер телефона" mask="+{7} ( 000 ) 000-00-00" type="text" pattern="\+?\d{1}\s[\(]\s\d{3}\s[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" required >
+            <!-- использовал бы кастомный атрибут для маски, но тогда про валидность html можно забыть -->
+            <div class="form__container field" title="+{7} ( 000 ) 000-00-00">
+                <input class="field__input field__input--round" name="phone" autocomplete="username"  placeholder="Номер телефона"  type="text" pattern="\+?\d{1}\s[\(]\s\d{3}\s[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" required >
             </div>
             <div class="form__container field">
                 <input class="field__input field__input--round" name="password" autocomplete="current-password" placeholder="Пароль" type="password" minlength="5" required  >
