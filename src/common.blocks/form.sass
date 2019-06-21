@@ -1,4 +1,7 @@
-@mixin form_element
+$form__element_height: 42px
+    
+   
+@mixin form_element_base
     outline: none
     color: white
     background: none
@@ -10,9 +13,12 @@
     width: 80%
     margin: 7px
     height: $form__element_height
-    
-// button отличается в макете по высоте, на мой взгляд это ошибка
-$form__element_height: 42px
+
+
+@mixin round_element($radius)
+    height: $radius;
+    width: $radius;
+    border-radius: 50%
 
 .form
     display: flex
@@ -20,34 +26,43 @@ $form__element_height: 42px
     align-items: center
     padding: 25px 
 
-.form__field
-    @include form_element
-    @include form_block
-    border:none
-    background-color: Transparent
-    border: 2px solid rgba(255, 255, 255, 0.35)
-    text-align: center
-    font-size: 1.20em
+// .form__field
+//     @include form_element_base
+//     height: $form__element_height
+//     width: 100%
+//     border:none
+//     background-color: Transparent
+//     border: 2px solid rgba(255, 255, 255, 0.35)
+//     text-align: center
+//     font-size: 1.20em
+//     -o-text-overflow: ellipsis
+//     -ms-text-overflow: ellipsis
+//     text-overflow: ellipsis
+//     display: flex
+
+
+
+// .form__error 
+//     @include round_element($form__element_height - $form__element_height/5)
+//     @include centered-dialog
+//     position: absolute
+//     // transform: translateX(-$form__element_height)
+//     background: red
+//     font-size: 2em
 
 .form__container
-    @include form_element
+    @include form_element_base
     @include form_block
     display: flex
-    align-items: center
 
 .form__container--space-between
     justify-content: space-between
 
-.form__field--round    
-    border-radius: $form__element_height/2
 
-.form__field:focus
-    background-color: white
-    color: rgb(92, 92, 92)
 
 
 .form__button
-    @include form_element
+    @include form_element_base
     height: $form__element_height
     min-width: 200px;
     border: solid
@@ -66,12 +81,12 @@ $form__element_height: 42px
     // cursor: auto;
 
 .form__header 
-    @include form_element
+    @include form_element_base
     height: 150px
     width: 100%
     
 .form__action 
-    @include form_element
+    @include form_element_base
     text-transform: uppercase
     font-size: .65em
     letter-spacing: 0.11em
@@ -84,6 +99,8 @@ $form__element_height: 42px
 .form__reference
     text-decoration: underline
     cursor: pointer
+    display: flex
+    align-items: center
 
 .form__bottom
     margin-top: 20px

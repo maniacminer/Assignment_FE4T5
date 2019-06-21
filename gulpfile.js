@@ -6,6 +6,7 @@ const sassGlob = require('gulp-sass-glob');
 const cleanCSS = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify-es').default;
 
 sass.compiler = require('node-sass');
 
@@ -34,11 +35,18 @@ function htmlCompile(cb) {
 }
 
 function jsCompile(cb) {
-  gulp.src('./src/**/*.js')
-    // .pipe(babel({
-    //   presets: ['@babel/env'], modules:"common"
-    // }))
+  gulp.src([
+    // Важна последовательность сборки js!
+    'node_modules/imask/dist/imask.js',
+    // 'node_modules/babel-polyfill/dist/polyfill.js',  // в требованиях есть e11
+    './src/common.blocks/**/*.js',
+    './src/js/**/*.js'
+    ])
     .pipe(concat('app.js'))
+    // .pipe(babel({
+    //   presets: ['@babel/env']
+    // }))
+    // .pipe(uglify())
     .pipe(gulp.dest('./build/js/'))
   }
 

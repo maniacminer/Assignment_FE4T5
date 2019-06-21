@@ -1,0 +1,67 @@
+@mixin form_field_attention
+    background-color: white
+    color: rgb(92, 92, 92)
+
+.field
+    display: flex
+    align-items: center
+    position: relative
+    width: 100%
+    height: 100%
+
+.field--error::after
+    content: "!"  
+    color: #fff
+    font-size: 1.2rem
+    background-color: #e00
+    position: absolute
+    right: 0
+    // ie hack
+    bottom: 22%
+    margin-right: 12px;
+    height: 24px
+    width: 24px
+    border-radius: 50%
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+
+.field--validated::after
+    content: "" 
+    border-style: none solid solid none
+    border-width: 1px 
+    color: #fff
+    font-size: 1.2rem
+    position: absolute
+    right: 0
+    // ie hack
+    bottom: 32%
+    margin-right: 22px;
+    transform: rotate(35deg)
+    height: 20px
+    width: 7px
+
+.field__input
+    outline: none
+    height: 100%
+    width: 100%
+    background-color: Transparent
+    border: 2px solid rgba(255, 255, 255, 0.35)
+    text-align: center
+    font-size: 1.2rem
+    -o-text-overflow: ellipsis
+    -ms-text-overflow: ellipsis
+    text-overflow: ellipsis
+    display: flex    
+    color: white
+
+.field__input--round    
+    border-radius: 24px
+
+.field__input:focus
+    @include form_field_attention 
+
+.field--error > .field__input
+    @include form_field_attention       
+    border-radius: 24px
