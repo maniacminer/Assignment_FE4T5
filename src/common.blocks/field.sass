@@ -1,4 +1,5 @@
 @import 'common.sass'
+@import 'css_glyph.sass'
     
 @mixin form_field_attention
     background-color: white
@@ -22,23 +23,10 @@
 
 
 .field--error > .field__icon::after
-    content: "!"  
-    color: #fff
-    background-color: #e00
-    height: 24px
-    width: 24px
-    border-radius: 50%
-    @include centered-dialog
+    @include error_icon
 
 .field--validated > .field__icon::after
-    content: "" 
-    border-style: none solid solid none
-    border-width: 1px 
-    margin-bottom: 4px
-    color: #fff
-    transform: rotate(35deg)
-    height: 20px
-    width: 7px
+    @include checked_icon
 
 .field__input
     outline: none
@@ -70,3 +58,6 @@
 .field--error > .field__icon
     @include form_field_attention 
 
+.form__back
+    display: flex
+    flex-flow: row nowrap

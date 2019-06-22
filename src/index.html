@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate" />    
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -12,7 +11,11 @@
     <div class="login-dialog background-dark">
         <form  class="login-dialog__form background-blur form" id="login_form" >
             <div class="form__header"> 
-                <img class="arrow" src="img/arrow.png" width="18" height="7" alt=""><span class="form__action"> вернуться</span> 
+                <div class="form__back">
+                    <div class="arrow_head"></div><div class="arrow_pole"></div>
+                    <!-- <img class="arrow" src="img/arrow.png" width="18" height="7" alt=""> -->
+                    <span class="form__action"> вернуться</span> 
+                </div>
                 <div class="logo_container"><img  src="img/rabbit.png" width="120" height="120" alt=""></div>
             </div>
             <!-- использовал бы кастомный атрибут для маски, но тогда про валидность html можно забыть -->
