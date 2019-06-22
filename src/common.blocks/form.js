@@ -12,15 +12,14 @@ function Form(domElement){
     }
 
     self.init = function() {
+        // обработчик отсылки формы
+        self.domElement.addEventListener('submit', self.submit);
+
         // Если выключен js:
         // 1. отключим валидацию средствами html
         self.domElement.setAttribute('novalidate', '');
 
-        // обработчик отсылки формы
-        self.domElement.addEventListener('submit', self.submit);
-
         const buttons = self.domElement.getElementsByClassName('form__button');
-
         // 2. и выключим сабмит кнопку/и по умолчанию
         for (i = 0; i< buttons.length; i++){
             const btn = buttons[i];
@@ -31,7 +30,7 @@ function Form(domElement){
         }
 
         // получаем все поля на форме
-        const inputs = document.getElementsByClassName('field');
+        const inputs = self.domElement.getElementsByClassName('field');
 
         for (i = 0; i< inputs.length; i++){
             // инициализируем поля из дом
@@ -39,6 +38,7 @@ function Form(domElement){
             self.fields.push(field);
 
             // и подписываемся на события валидации
+            // события приходят только по имени, без аргументов, этого достаточно
             field.subscribe("validated", function() {
                 self.validFields++;
 
@@ -46,11 +46,11 @@ function Form(domElement){
                 if (self.validFields === self.fields.length) {
                     // все поля валидированы
                     // Ура, можно сделать кнопку доступной
-                    console.log(self.submitButton);
                     self.submitButton.removeAttribute('disabled');
                 }
             });
             field.subscribe("unvalidated", function() {
+                // было валидно, но ввод девалидировали 
                 self.validFields--;
 
                 if (!self.submitButton.hasAttribute('disabled')) {

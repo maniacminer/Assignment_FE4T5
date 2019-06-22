@@ -4,12 +4,11 @@ const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const sassGlob = require('gulp-sass-glob');
 const cleanCSS = require('gulp-clean-css');
-const babel = require('gulp-babel');
+// const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 
 sass.compiler = require('node-sass');
-
 
 function sassCompile(cb) {
   gulp.src('./src/sass/style.sass')
@@ -36,11 +35,12 @@ function htmlCompile(cb) {
 
 function jsCompile(cb) {
   gulp.src([
-    // Важна последовательность сборки js!
+    // это единственная сторонняя библиотека, т.к ввести телефон по формату из макета тяжело без маски
+    // взял эту библиотеку, т.к. jquery тянет больше зависимостей
+    // валидация сделана также на regex
     'node_modules/imask/dist/imask.js',
-    // 'node_modules/babel-polyfill/dist/polyfill.js',  // в требованиях есть e11
-    './src/common.blocks/**/*.js',
-    './src/js/**/*.js'
+    // остальное все на нативном js
+    './src/**/*.js'
     ])
     .pipe(concat('app.js'))
     // .pipe(babel({
@@ -61,10 +61,7 @@ function imgCompile(cb) {
 
 }
 
-
-
 const build = parallel(sassCompile, htmlCompile, imgCompile, jsCompile);
-
 
 function serve(done) {
   browserSync.init({
@@ -111,9 +108,7 @@ function serve(done) {
 }
 
 
-
 exports.build = build;
-
 exports.serve = serve;
 exports.default = serve;
 exports.sass = sassCompile;

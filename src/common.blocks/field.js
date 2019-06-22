@@ -5,7 +5,7 @@ function Field(domField) {
     const self = this;
 
     // event emitter и подписка на события для формы-владельца
-    // реализация SRP - поля ничего не должны знать о родителях
+    // реализация SRP через event emitter - потомки в дереве ничего не должны знать о родителях
     this.eventEmitter = new EventEmitter();
     this.subscribe = function (event, listener){
         self.eventEmitter.on(event, listener);
@@ -72,8 +72,9 @@ function Field(domField) {
 
             input.addEventListener('change', validationFunc);
             // иначе ie11 не ловит крестик, 
-            // копи-пасты и тд.
+            // копи-пасты аутокомплит и тд.
             input.addEventListener('keyup', validationFunc);
+            input.addEventListener('blur', validationFunc);
             input.addEventListener('past', validationFunc);
             input.addEventListener('cut', validationFunc);
             input.addEventListener('input', validationFunc);
@@ -81,6 +82,5 @@ function Field(domField) {
     }
 
     init();
-
 }
 

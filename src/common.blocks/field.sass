@@ -1,67 +1,72 @@
+@import 'common.sass'
+    
 @mixin form_field_attention
     background-color: white
     color: rgb(92, 92, 92)
 
 .field
     display: flex
-    align-items: center
-    position: relative
-    width: 100%
-    height: 100%
+    flex-flow: row nowrap
 
-.field--error::after
+.field__icon
+    font-size: 1.2rem
+    width: 34px
+    border: 2px solid rgba(255, 255, 255, 0.35)
+    border-left: none
+    @include centered-dialog
+
+// подобные селекторы по БЭМ не рекомендуются, но в данном случае эти поля неотьемлемая часть шаблона html для .field.
+// Иначе пришлось бы ставить модификатор каждому элементу - на мой взгля это не верно
+.field--round > .field__icon
+    border-radius: 0 24px 24px 0
+
+
+.field--error > .field__icon::after
     content: "!"  
     color: #fff
-    font-size: 1.2rem
     background-color: #e00
-    position: absolute
-    right: 0
-    // ie hack
-    bottom: 22%
-    margin-right: 12px;
     height: 24px
     width: 24px
     border-radius: 50%
-    display: flex
-    justify-content: center
-    align-items: center
-    text-align: center
+    @include centered-dialog
 
-.field--validated::after
+.field--validated > .field__icon::after
     content: "" 
     border-style: none solid solid none
     border-width: 1px 
+    margin-bottom: 4px
     color: #fff
-    font-size: 1.2rem
-    position: absolute
-    right: 0
-    // ie hack
-    bottom: 32%
-    margin-right: 22px;
     transform: rotate(35deg)
     height: 20px
     width: 7px
 
 .field__input
     outline: none
-    height: 100%
-    width: 100%
+    flex-grow: 1
     background-color: Transparent
     border: 2px solid rgba(255, 255, 255, 0.35)
+    border-right: none
     text-align: center
     font-size: 1.2rem
     -o-text-overflow: ellipsis
     -ms-text-overflow: ellipsis
     text-overflow: ellipsis
-    display: flex    
     color: white
 
-.field__input--round    
-    border-radius: 24px
+.field--round .field__input
+    border-radius: 24px 0 0 24px
 
 .field__input:focus
     @include form_field_attention 
 
+// ранее было сделано по absolute position в input псевдоэлментом,
+// но на форме ниже 320 отрабатывает не очень красиво - сьезжает влево
+.field__input:focus + .field__icon
+    @include form_field_attention 
+
 .field--error > .field__input
-    @include form_field_attention       
-    border-radius: 24px
+    @include form_field_attention 
+
+.field--error > .field__icon
+    @include form_field_attention 
+

@@ -14,9 +14,5 @@ const App = (function() {
     }
 })();
 
-function submit() {
-    console.log('!')
-    return false;
-}
 
 

@@ -1,19 +1,11 @@
 $form__element_height: 42px
-    
    
 @mixin form_element_base
     outline: none
-    color: white
     background: none
     text-decoration: none
     box-shadow: none
     -webkit-box-shadow: none
-
-@mixin form_block
-    width: 80%
-    margin: 7px
-    height: $form__element_height
-
 
 @mixin round_element($radius)
     height: $radius;
@@ -22,44 +14,30 @@ $form__element_height: 42px
 
 .form
     display: flex
-    flex-flow: column wrap
+    flex-flow: column nowrap
     align-items: center
     padding: 25px 
-
-// .form__field
-//     @include form_element_base
-//     height: $form__element_height
-//     width: 100%
-//     border:none
-//     background-color: Transparent
-//     border: 2px solid rgba(255, 255, 255, 0.35)
-//     text-align: center
-//     font-size: 1.20em
-//     -o-text-overflow: ellipsis
-//     -ms-text-overflow: ellipsis
-//     text-overflow: ellipsis
-//     display: flex
-
-
-
-// .form__error 
-//     @include round_element($form__element_height - $form__element_height/5)
-//     @include centered-dialog
-//     position: absolute
-//     // transform: translateX(-$form__element_height)
-//     background: red
-//     font-size: 2em
+    color: white
 
 .form__container
     @include form_element_base
-    @include form_block
+    width: 80%
+    // увеличиваем ширину контейнеров на форме по мере сужения экрана, чтобы плавно отрабатывало до 320px
+    @media screen and (max-width: 400px) 
+        width: 90%
+    @media screen and (max-width: 321px) 
+        width: 100%
+    margin: 7px
+    height: $form__element_height
     display: flex
-
-.form__container--space-between
+    flex-flow: row
     justify-content: space-between
+    align-items: stretch
 
-
-
+.form__element
+    @media screen and (max-width: 320px)  
+        width: 90%
+        color: red
 
 .form__button
     @include form_element_base
@@ -71,14 +49,13 @@ $form__element_height: 42px
     text-transform: uppercase
     font-weight: 700
     letter-spacing: 0.20em
-    // cursor: pointer
+    color: white
 
 .form__button--round
     border-radius: $form__element_height/2
 
 .form__button:disabled
     opacity: 0.2
-    // cursor: auto;
 
 .form__header 
     @include form_element_base
