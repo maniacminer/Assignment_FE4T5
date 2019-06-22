@@ -15,4 +15,6 @@ const App = (function() {
 })();
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    App.init("#login_form");
+});
