@@ -1,5 +1,14 @@
 # Assignment_FE4T5
 
+Доброго времени суток!
+Моя реализация тестового задания. За чистотой коммитов не следил.
+Установка:
+```sh
+git clone https://github.com/maniacminer/Assignment_FE4T5.git
+npm install
+npm run serve
+```
+
 # Тестовое задание
 
 Присутствует три макета формы авторизации:
