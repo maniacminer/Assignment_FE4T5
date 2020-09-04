@@ -17,7 +17,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sass-glob": "^1.0.9",
     "gulp-uglify-es": "^1.0.4",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.13.1"
   },
   "dependencies": {
         "imask": "^5.1.6"
